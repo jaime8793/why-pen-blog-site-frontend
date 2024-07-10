@@ -1,0 +1,267 @@
+{
+  "posts": [
+    {
+      "_id": "3",
+      "title": "Understanding Blockchain Technology",
+      "content": "Blockchain is a decentralized technology...",
+      "snippet": "Blockchain is a decentralized technology, known for its security...",
+      "author": "Alice Johnson",
+      "createdAt": "2023-07-03T10:15:00Z",
+      "category": "Technology",
+      "tags": ["Blockchain", "Cryptocurrency", "Decentralization"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "4",
+      "title": "Machine Learning Applications in Finance",
+      "content": "Machine learning is transforming the financial sector...",
+      "snippet": "Machine learning is transforming the financial sector, improving...",
+      "author": "David Brown",
+      "createdAt": "2023-07-04T11:45:00Z",
+      "category": "Technology",
+      "tags": ["Machine Learning", "Finance", "Data Science"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "5",
+      "title": "Cybersecurity Best Practices for Businesses",
+      "content": "Protecting data and systems from cyber threats...",
+      "snippet": "Protecting data and systems from cyber threats is crucial for businesses...",
+      "author": "Emily Wilson",
+      "createdAt": "2023-07-05T09:30:00Z",
+      "category": "Technology",
+      "tags": ["Cybersecurity", "Business", "Data Protection"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "6",
+      "title": "The Rise of Augmented Reality",
+      "content": "Augmented Reality is changing the way we interact with digital content...",
+      "snippet": "Augmented Reality is changing the way we interact with digital content...",
+      "author": "Michael Anderson",
+      "createdAt": "2023-07-06T13:00:00Z",
+      "category": "Technology",
+      "tags": ["Augmented Reality", "Technology Trends", "Digital Interaction"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "7",
+      "title": "Python Tips and Tricks for Developers",
+      "content": "Useful Python techniques to enhance your coding productivity...",
+      "snippet": "Useful Python techniques to enhance your coding productivity...",
+      "author": "Sophia Clark",
+      "createdAt": "2023-07-07T15:45:00Z",
+      "category": "Technology",
+      "tags": ["Python", "Programming", "Development"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "8",
+      "title": "Cloud Computing: Benefits and Challenges",
+      "content": "Exploring the advantages and potential drawbacks of cloud computing...",
+      "snippet": "Exploring the advantages and potential drawbacks of cloud computing...",
+      "author": "Daniel Evans",
+      "createdAt": "2023-07-08T12:30:00Z",
+      "category": "Technology",
+      "tags": [
+        "Cloud Computing",
+        "IT Infrastructure",
+        "Digital Transformation"
+      ],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "9",
+      "title": "IoT and Its Impact on Smart Cities",
+      "content": "The Internet of Things is revolutionizing urban infrastructure...",
+      "snippet": "The Internet of Things is revolutionizing urban infrastructure...",
+      "author": "Isabella Moore",
+      "createdAt": "2023-07-09T09:00:00Z",
+      "category": "Technology",
+      "tags": ["IoT", "Smart Cities", "Urban Infrastructure"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "10",
+      "title": "The Evolution of Virtual Reality Gaming",
+      "content": "Virtual Reality gaming has come a long way...",
+      "snippet": "Virtual Reality gaming has come a long way, offering immersive experiences...",
+      "author": "Jacob Lee",
+      "createdAt": "2023-07-10T14:00:00Z",
+      "category": "Technology",
+      "tags": ["Virtual Reality", "Gaming", "Entertainment"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "11",
+      "title": "Data Privacy in the Age of Big Data",
+      "content": "Protecting personal information in a data-driven world...",
+      "snippet": "Protecting personal information in a data-driven world...",
+      "author": "Olivia Taylor",
+      "createdAt": "2023-07-11T11:15:00Z",
+      "category": "Technology",
+      "tags": ["Data Privacy", "Big Data", "Security"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "12",
+      "title": "Artificial Intelligence in Healthcare",
+      "content": "AI applications improving healthcare outcomes...",
+      "snippet": "AI applications improving healthcare outcomes...",
+      "author": "William Roberts",
+      "createdAt": "2023-07-12T10:30:00Z",
+      "category": "Technology",
+      "tags": ["Artificial Intelligence", "Healthcare", "Medical Technology"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "13",
+      "title": "Frontend Development Trends for 2023",
+      "content": "Emerging trends in frontend development...",
+      "snippet": "Emerging trends in frontend development...",
+      "author": "Ethan Wilson",
+      "createdAt": "2023-07-13T14:45:00Z",
+      "category": "Technology",
+      "tags": ["Frontend Development", "Web Design", "User Experience"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "14",
+      "title": "The Impact of 5G on Mobile Technology",
+      "content": "5G technology is reshaping mobile communications...",
+      "snippet": "5G technology is reshaping mobile communications...",
+      "author": "Mia Davis",
+      "createdAt": "2023-07-14T09:30:00Z",
+      "category": "Technology",
+      "tags": ["5G", "Mobile Technology", "Wireless Communication"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "15",
+      "title": "User Interface Design Principles",
+      "content": "Key principles for designing intuitive user interfaces...",
+      "snippet": "Key principles for designing intuitive user interfaces...",
+      "author": "Nathan Gray",
+      "createdAt": "2023-07-15T11:00:00Z",
+      "category": "Technology",
+      "tags": ["UI Design", "User Experience", "Web Development"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "16",
+      "title": "Ethical Considerations in AI Development",
+      "content": "Addressing ethical issues in the development of AI...",
+      "snippet": "Addressing ethical issues in the development of AI...",
+      "author": "Sophie Baker",
+      "createdAt": "2023-07-16T12:15:00Z",
+      "category": "Technology",
+      "tags": ["AI Ethics", "Technology", "Ethical AI"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "17",
+      "title": "JavaScript Frameworks Comparison",
+      "content": "Comparing popular JavaScript frameworks for web development...",
+      "snippet": "Comparing popular JavaScript frameworks for web development...",
+      "author": "Liam Harris",
+      "createdAt": "2023-07-17T14:30:00Z",
+      "category": "Technology",
+      "tags": ["JavaScript", "Frameworks", "Web Development"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "18",
+      "title": "Future Trends in Artificial Intelligence",
+      "content": "Predictions for the future of AI and its impact...",
+      "snippet": "Predictions for the future of AI and its impact...",
+      "author": "Jackie Wilson",
+      "createdAt": "2023-07-18T09:45:00Z",
+      "category": "Technology",
+      "tags": ["AI", "Future Tech", "Trends"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "19",
+      "title": "The Role of Data Science in Business",
+      "content": "How data science is transforming business strategies...",
+      "snippet": "How data science is transforming business strategies...",
+      "author": "Lucas White",
+      "createdAt": "2023-07-19T12:00:00Z",
+      "category": "Technology",
+      "tags": ["Data Science", "Business", "Analytics"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "20",
+      "title": "The Impact of AI on Employment",
+      "content": "Examining how AI is affecting job markets globally...",
+      "snippet": "Examining how AI is affecting job markets globally...",
+      "author": "Emma Taylor",
+      "createdAt": "2023-07-20T14:15:00Z",
+      "category": "Technology",
+      "tags": ["AI", "Employment", "Future of Work"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "21",
+      "title": "Advancements in Natural Language Processing",
+      "content": "Recent advancements in NLP and their applications...",
+      "snippet": "Recent advancements in NLP and their applications...",
+      "author": "Aiden Miller",
+      "createdAt": "2023-07-21T09:30:00Z",
+      "category": "Technology",
+      "tags": ["NLP", "AI", "Machine Learning"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "22",
+      "title": "Introduction to Quantum Computing",
+      "content": "Exploring the basics of quantum computing and its potential...",
+      "snippet": "Exploring the basics of quantum computing and its potential...",
+      "author": "Gabriel Martinez",
+      "createdAt": "2023-07-22T11:00:00Z",
+      "category": "Technology",
+      "tags": ["Quantum Computing", "Technology", "Science"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "23",
+      "title": "The Future of Robotics in Industry",
+      "content": "Robotics is revolutionizing industrial processes...",
+      "snippet": "Robotics is revolutionizing industrial processes...",
+      "author": "Samantha Green",
+      "createdAt": "2023-07-23T14:45:00Z",
+      "category": "Technology",
+      "tags": ["Robotics", "Automation", "Industry 4.0"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "24",
+      "title": "Web Accessibility Guidelines for Developers",
+      "content": "Ensuring websites are accessible to all users...",
+      "snippet": "Ensuring websites are accessible to all users...",
+      "author": "Oliver Clark",
+      "createdAt": "2023-07-24T09:00:00Z",
+      "category": "Technology",
+      "tags": ["Accessibility", "Web Development", "Inclusive Design"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    },
+    {
+      "_id": "25",
+      "title": "The Impact of Biotechnology on Healthcare",
+      "content": "Biotechnological advancements in improving medical treatments...",
+      "snippet": "Biotechnological advancements in improving medical treatments...",
+      "author": "Sophie Roberts",
+      "createdAt": "2023-07-25T11:15:00Z",
+      "category": "Technology",
+      "tags": ["Biotechnology", "Healthcare", "Medical Technology"],
+      "image": "https://utfs.io/f/598bf6fd-18da-4c32-8c75-aa4adcec3a9d-uvsu6b.png"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Technology" },
+    { "id": 2, "name": "Travel" },
+    { "id": 3, "name": "Food" },
+    { "id": 4, "name": "Lifestyle" }
+  ]
+}
