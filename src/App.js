@@ -8,6 +8,7 @@ import PostDetail from "./components/PostDetail";
 import Admin from "./components/Admin";
 import PrivateRoute from "./components/PrivateRoute";
 import Footer from "./components/Footer";
+import Footer2 from "./components/footer/Footer";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Footer2 />
       </div>
     </Router>
   );

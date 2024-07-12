@@ -1,0 +1,127 @@
+.footer-Area .row {
+    width: 99.9%;
+    margin: auto;
+}
+
+.footer-Area .f_container {
+    width: 100%;
+    background-color: #003366;
+    text-align: left;
+}
+
+.footer-Area hr {
+    border: 1px solid;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(252, 241, 241);
+}
+
+.footer-Area .f_img img {
+    float: left;
+    width: 90px;
+    height: 90px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.footer-Area .col {
+    text-align: left;
+}
+
+.footer-Area h3 {
+    text-align: left;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+}
+
+.footer-Area ul a {
+    color: rgb(255, 250, 250);
+    text-align: left;
+}
+
+.footer-Area ul li {
+    font-size: 14px;
+    color: rgb(255, 253, 253);
+}
+
+.footer-Area ul li:hover {
+    color: rgb(68, 138, 175, 1);
+    cursor: pointer;
+}
+
+.footer-Area ul li a:hover {
+    color: rgb(68, 138, 175, 1);
+    cursor: pointer;
+}
+
+.footer-Area .f_text {
+    padding-bottom: 10px;
+}
+
+.footer-Area .f_end {
+    margin-top: 20px;
+}
+
+.footer-Area .social-icons {
+    text-align: center;
+    font-family: "Open Sans";
+    font-weight: 300;
+    font-size: 0.85 em;
+    color: rgba(68, 138, 175, 1);
+}
+
+.footer-Area .social-icons p {
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+}
+
+.footer-Area .social-icons ul {
+    list-style: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-Area .social-icons ul li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.footer-Area .social-icons ul li a {
+    display: block;
+    font-size: 1.4em;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.footer-Area .social-icons ul li a i {
+    color: rgba(68, 138, 175, 1);
+    transition: all 0.2s ease-in;
+}
+
+.footer-Area .social-icons ul li a:hover i {
+    color: darken(rgba(68, 138, 175, 1), 20%);
+}
+
+.footer-Area .social-icons ul li a:focus i,
+.footer-Area .social-icons ul li a:active i {
+    transition: none;
+    color: darken(rgba(68, 138, 175, 1), 40%);
+}
+
+@media (max-width: 425px) {
+    .footer-Area .f_img img {
+        width: 60px;
+        height: 60px;
+    }
+    .footer-Area h3 {
+        font-size: 9px;
+    }
+    .footer-Area ul li {
+        font-size: 9px;
+
+    }
+}
