@@ -17,9 +17,11 @@ function Navbar() {
           <div className="flex space-x-7">
             <div>
               <Link to="/" className="flex items-center py-4 px-2">
-                <span className="font-semibold text-gray-500 text-lg">
-                  BlogApp
-                </span>
+                <img
+                  className="w-10 h-10"
+                  src="https://utfs.io/f/175a486b-260e-486f-a06e-7f9f909f594a-1zbfv.png"
+                  alt="logo"
+                />
               </Link>
             </div>
           </div>

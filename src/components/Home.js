@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Sidebar from "./sidebar/Sidebar";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -32,43 +33,52 @@ function Home() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-6">Recent blog posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <FeaturedPostCard2 post={posts[0]} />
-          <div className="grid grid-rows-2 gap-8">
-            <SmallPostCard post={posts[1]} />
-            <SmallPostCard post={posts[2]} />
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-3/4 md:pr-8">
+            <div className="container mx-auto px-4 py-8">
+              <h2 className="text-2xl font-bold mb-6">Recent blog posts</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <FeaturedPostCard2 post={posts[0]} />
+                <div className="grid grid-rows-2 gap-8">
+                  <SmallPostCard post={posts[1]} />
+                  <SmallPostCard post={posts[2]} />
+                </div>
+                <LargePostCard post={posts[3]} />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold mb-6">Recent blog posts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              {posts.slice(0, 3).map((post) => (
+                <FeaturedPostCard
+                  key={post._id}
+                  post={post}
+                  categories={categories}
+                />
+              ))}
+            </div>
+
+            <h2 className="text-2xl font-bold mb-6">All blog posts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {currentPosts.map((post) => (
+                <PostCard key={post._id} post={post} categories={categories} />
+              ))}
+            </div>
+
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={posts.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </div>
-          <LargePostCard post={posts[3]} />
+          <div className="md:w-1/4">
+            <Sidebar />
+          </div>
         </div>
       </div>
-      <h2 className="text-2xl font-bold mb-6">Recent blog posts</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {posts.slice(0, 3).map((post) => (
-          <FeaturedPostCard
-            key={post._id}
-            post={post}
-            categories={categories}
-          />
-        ))}
-      </div>
-
-      <h2 className="text-2xl font-bold mb-6">All blog posts</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {currentPosts.map((post) => (
-          <PostCard key={post._id} post={post} categories={categories} />
-        ))}
-      </div>
-
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
-    </div>
+    </>
   );
 }
 
@@ -168,19 +178,31 @@ function Pagination({ postsPerPage, totalPosts, paginate, currentPage }) {
   );
 }
 
-
 function FeaturedPostCard2({ post }) {
   if (!post) return null;
   return (
     <div className="col-span-2 md:col-span-1 row-span-2">
-      <img src={post.image} alt={post.title} className="w-full h-64 object-cover mb-4" />
+      <img
+        src={post.image}
+        alt={post.title}
+        className="w-full h-64 object-cover mb-4"
+      />
       <div className="mt-2">
-        <span className="text-purple-600 text-sm">{post.author} • {new Date(post.createdAt).toLocaleDateString()}</span>
-        <Link to={`/post/${post._id}`} className="block text-xl font-semibold mt-1 hover:text-blue-600">{post.title}</Link>
+        <span className="text-purple-600 text-sm">
+          {post.author} • {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+        <Link
+          to={`/post/${post._id}`}
+          className="block text-xl font-semibold mt-1 hover:text-blue-600"
+        >
+          {post.title}
+        </Link>
         <p className="text-gray-600 mt-2">{post.snippet}</p>
         <div className="mt-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">{tag}</span>
+            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">
+              {tag}
+            </span>
           ))}
         </div>
       </div>
@@ -192,14 +214,27 @@ function SmallPostCard({ post }) {
   if (!post) return null;
   return (
     <div className="flex">
-      <img src={post.image} alt={post.title} className="w-1/3 h-32 object-cover" />
+      <img
+        src={post.image}
+        alt={post.title}
+        className="w-1/3 h-32 object-cover"
+      />
       <div className="ml-4 flex-1">
-        <span className="text-purple-600 text-sm">{post.author} • {new Date(post.createdAt).toLocaleDateString()}</span>
-        <Link to={`/post/${post._id}`} className="block text-lg font-semibold mt-1 hover:text-blue-600">{post.title}</Link>
+        <span className="text-purple-600 text-sm">
+          {post.author} • {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+        <Link
+          to={`/post/${post._id}`}
+          className="block text-lg font-semibold mt-1 hover:text-blue-600"
+        >
+          {post.title}
+        </Link>
         <p className="text-gray-600 mt-2 text-sm">{post.snippet}</p>
         <div className="mt-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">{tag}</span>
+            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">
+              {tag}
+            </span>
           ))}
         </div>
       </div>
@@ -211,14 +246,27 @@ function LargePostCard({ post }) {
   if (!post) return null;
   return (
     <div className="col-span-2">
-      <img src={post.image} alt={post.title} className="w-full h-64 object-cover mb-4" />
+      <img
+        src={post.image}
+        alt={post.title}
+        className="w-full h-64 object-cover mb-4"
+      />
       <div className="mt-2">
-        <span className="text-purple-600 text-sm">{post.author} • {new Date(post.createdAt).toLocaleDateString()}</span>
-        <Link to={`/post/${post._id}`} className="block text-xl font-semibold mt-1 hover:text-blue-600">{post.title}</Link>
+        <span className="text-purple-600 text-sm">
+          {post.author} • {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+        <Link
+          to={`/post/${post._id}`}
+          className="block text-xl font-semibold mt-1 hover:text-blue-600"
+        >
+          {post.title}
+        </Link>
         <p className="text-gray-600 mt-2">{post.snippet}</p>
         <div className="mt-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">{tag}</span>
+            <span key={tag} className="inline-block mr-2 text-sm text-blue-600">
+              {tag}
+            </span>
           ))}
         </div>
       </div>

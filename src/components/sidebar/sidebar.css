@@ -1,123 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300;1,400&family=Marck+Script&family=Merienda:wght@400;500;600;700&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300;1,400&display=swap');
 
-.sidebar {
-  flex: 2;
-  font-family: 'Lato', sans-serif;
+@layer base {
+  html {
+    font-family: 'Lato', sans-serif;
+  }
 }
 
-.Blog-Area {
-  padding-top: 2px;
+@layer utilities {
+  .border-3 {
+    border-width: 3px;
+  }
 }
-
-.Blog-Area .container {
-  padding-top: 15px;
-  margin-bottom: 10px;
-}
-
-.Blog-Area {
-  padding-top: 2px;
-}
-
-.Blog-Area .container {
-  padding-top: 15px;
-  margin-bottom: 10px;
-}
-
-.Blog-Area .email_tab {
-  line-height: 1em;
-  background-color: #b1fdfd;
-  color: rgb(2, 55, 83);
-  padding: 10px;
-  padding-left: 10px;
-  border-radius: 20px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-.Blog-Area .email_tab h1 {
-  font-size: 18px;
-
-}
-
-.Blog-Area .email_tab p {
-  font-size: 14px;
-}
-
-.Blog-Area .email_tab input[type="Email Address"] {
-  border: none;
-}
-
-.Blog-Area .email_tab button {
-  margin-top: 5px;
-  border: none;
-  background-color: #3ed2cb;
-  float: right;
-  padding: 2px;
-  border-radius: 15px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: rgb(2, 55, 83);
-}
-
-.Blog-Area .email_tab button:hover {
-  background-color: #2bb3b3;
-
-}
-
-.Blog-Area .email_tab .errmsg {
-  color: #a30505;
-  position: relative;
-  font-weight: 600;
-  line-height: 1em;
-  padding-top: 5px;
-
-}
-
-.Blog-Area .articles_tab {
-  line-height: 1.1em;
-  color: rgb(2, 55, 83);
-  margin-top: 15px;
-  padding-top: 20px;
-  padding-left: 10px;
-  border: solid 3px rgb(2, 55, 83);
-  border-radius: 20px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.Blog-Area .articles_tab span{
-  padding: 2px;
-  margin: 10px;
-}
-
-.Blog-Area .articles_tab h1 {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.Blog-Area .articles_tab p {
-  font-size: 14px;
-}
-
-.Blog-Area .writing_tab {
-  line-height: 1.1em;
-  color: #01a3a3;
-  margin-top: 15px;
-  padding-top: 20px;
-  padding-left: 10px;
-  border: solid 3px #01a3a3;
-  border-radius: 20px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.Blog-Area .writing_tab span{
-  padding: 2px;
-  margin: 10px;
-}
-.Blog-Area .writing_tab h1 {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.Blog-Area .writing_tab p {
-  font-size: 15px;
-}
-
-@media (max-width: 768px) {}
