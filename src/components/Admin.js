@@ -9,15 +9,24 @@ function Admin() {
     category: "",
     tags: "",
     image: "",
+    author: "Admin", // Set author as Admin or the logged-in user
   });
+  const [categories, setCategories] = useState([]);
+  const [newCategory, setNewCategory] = useState("");
 
   useEffect(() => {
     fetchPosts();
+    fetchCategories();
   }, []);
 
   const fetchPosts = async () => {
     const response = await axios.get("http://localhost:5000/api/posts");
     setPosts(response.data);
+  };
+
+  const fetchCategories = async () => {
+    const response = await axios.get("http://localhost:5000/api/categories");
+    setCategories(response.data);
   };
 
   const handleInputChange = (e) => {
@@ -32,7 +41,14 @@ function Admin() {
         tags: newPost.tags.split(",").map((tag) => tag.trim()),
       });
       fetchPosts();
-      setNewPost({ title: "", content: "", category: "", tags: "", image: "" });
+      setNewPost({
+        title: "",
+        content: "",
+        category: "",
+        tags: "",
+        image: "",
+        author: "Admin",
+      });
     } catch (error) {
       alert("Failed to add post. Please try again.");
     }
@@ -44,6 +60,23 @@ function Admin() {
       fetchPosts();
     } catch (error) {
       alert("Failed to delete post. Please try again.");
+    }
+  };
+
+  const handleCategoryChange = (e) => {
+    setNewCategory(e.target.value);
+  };
+
+  const handleCategorySubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/api/categories", {
+        name: newCategory,
+      });
+      fetchCategories();
+      setNewCategory("");
+    } catch (error) {
+      alert("Failed to add category. Please try again.");
     }
   };
 
@@ -97,6 +130,23 @@ function Admin() {
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
           Add Post
+        </button>
+      </form>
+
+      <h3 className="text-xl font-bold mb-2">Add New Category:</h3>
+      <form onSubmit={handleCategorySubmit} className="mb-8">
+        <input
+          type="text"
+          value={newCategory}
+          onChange={handleCategoryChange}
+          placeholder="New Category"
+          className="w-full p-2 mb-4 border rounded"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Add Category
         </button>
       </form>
 
