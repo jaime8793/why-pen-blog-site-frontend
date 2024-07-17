@@ -13,7 +13,7 @@ function PostDetail() {
   }, [id]); // Effect re-runs if id changes
 
   const fetchPost = async () => {
-    const response = await axios.get(`http://localhost:5000/posts/${id}`);
+    const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
     setPost(response.data);
     if (response.data) {
       // Fetch category when you have post data
@@ -23,7 +23,7 @@ function PostDetail() {
 
   const fetchCategoryForPost = async (categoryId) => {
     const response = await axios.get(
-      `http://localhost:5000/categories/${categoryId}`
+      `http://localhost:5000/api/categories/${categoryId}`
     );
     setCategoryName(response.data.name); // Set the category name from fetched category data
   };

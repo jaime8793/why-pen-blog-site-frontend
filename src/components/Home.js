@@ -15,12 +15,12 @@ function Home() {
   }, []);
 
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:5000/posts");
+    const response = await axios.get("http://localhost:5000/api/posts");
     setPosts(response.data);
   };
 
   const fetchCategories = async () => {
-    const response = await axios.get("http://localhost:5000/categories");
+    const response = await axios.get("http://localhost:5000/api/categories");
     setCategories(response.data);
   };
 

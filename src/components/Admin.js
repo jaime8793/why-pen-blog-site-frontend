@@ -10,21 +10,14 @@ function Admin() {
     tags: "",
     image: "",
   });
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchPosts();
-    fetchCategories();
   }, []);
 
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:5000/posts");
+    const response = await axios.get("http://localhost:5000/api/posts");
     setPosts(response.data);
-  };
-
-  const fetchCategories = async () => {
-    const response = await axios.get("http://localhost:5000/categories");
-    setCategories(response.data);
   };
 
   const handleInputChange = (e) => {
@@ -34,7 +27,7 @@ function Admin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/posts", {
+      await axios.post("http://localhost:5000/api/posts", {
         ...newPost,
         tags: newPost.tags.split(",").map((tag) => tag.trim()),
       });
@@ -47,7 +40,7 @@ function Admin() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/posts/${id}`);
+      await axios.delete(`http://localhost:5000/api/posts/${id}`);
       fetchPosts();
     } catch (error) {
       alert("Failed to delete post. Please try again.");
@@ -75,19 +68,14 @@ function Admin() {
           className="w-full p-2 mb-4 border rounded"
           rows="4"
         ></textarea>
-        <select
+        <input
+          type="text"
           name="category"
           value={newPost.category}
           onChange={handleInputChange}
+          placeholder="Category"
           className="w-full p-2 mb-4 border rounded"
-        >
-          <option value="">Select a category</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+        />
         <input
           type="text"
           name="tags"
