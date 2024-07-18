@@ -9,24 +9,43 @@ function Admin() {
     category: "",
     tags: "",
     image: "",
-    author: "Admin", // Set author as Admin or the logged-in user
+    author: "", // We'll set this based on the logged-in user
   });
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
-
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [categoryMap, setCategoryMap] = useState({});
+ 
   useEffect(() => {
-    fetchPosts();
-    fetchCategories();
-  }, []);
+    if (token) {
+      fetchPosts();
+      fetchCategories();
+    }
+  }, [token]);
 
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:5000/api/posts");
-    setPosts(response.data);
+    try {
+      const response = await axios.get("http://localhost:5000/api/posts", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
   };
 
   const fetchCategories = async () => {
-    const response = await axios.get("http://localhost:5000/api/categories");
-    setCategories(response.data);
+    try {
+      const response = await axios.get("http://localhost:5000/api/categories", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCategories(response.data);
+      const map = {};
+      response.data.forEach((cat) => (map[cat._id] = cat.name));
+      setCategoryMap(map);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -36,10 +55,24 @@ function Admin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/posts", {
-        ...newPost,
+      const postData = {
+        title: newPost.title,
+        content: newPost.content,
+        category: newPost.category,
         tags: newPost.tags.split(",").map((tag) => tag.trim()),
-      });
+        image: newPost.image,
+        // The author should be set on the server based on the authenticated user
+      };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/posts",
+        postData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log("Post created:", response.data);
       fetchPosts();
       setNewPost({
         title: "",
@@ -47,16 +80,20 @@ function Admin() {
         category: "",
         tags: "",
         image: "",
-        author: "Admin",
       });
     } catch (error) {
+      console.error(
+        "Error creating post:",
+        error.response ? error.response.data : error.message
+      );
       alert("Failed to add post. Please try again.");
     }
   };
-
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       fetchPosts();
     } catch (error) {
       alert("Failed to delete post. Please try again.");
@@ -70,15 +107,23 @@ function Admin() {
   const handleCategorySubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/categories", {
-        name: newCategory,
-      });
+      await axios.post(
+        "http://localhost:5000/api/categories",
+        { name: newCategory },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       fetchCategories();
       setNewCategory("");
     } catch (error) {
       alert("Failed to add category. Please try again.");
     }
   };
+
+  if (!token) {
+    return <div>Please log in to access the admin panel.</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -101,14 +146,19 @@ function Admin() {
           className="w-full p-2 mb-4 border rounded"
           rows="4"
         ></textarea>
-        <input
-          type="text"
+        <select
           name="category"
           value={newPost.category}
           onChange={handleInputChange}
-          placeholder="Category"
           className="w-full p-2 mb-4 border rounded"
-        />
+        >
+          <option value="">Select a category</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
         <input
           type="text"
           name="tags"
@@ -156,9 +206,9 @@ function Admin() {
           <h4 className="text-lg font-semibold">{post.title}</h4>
           <p className="text-gray-600">
             By {post.author} on {new Date(post.createdAt).toLocaleDateString()}{" "}
-            in {post.category}
+            in {categoryMap[post.category] || "Uncategorized"}
           </p>
-          <p className="mb-2">{post.snippet}</p>
+          <p className="mb-2">{post.content.substring(0, 100)}...</p>
           <div className="mb-2">
             {post.tags.map((tag) => (
               <span

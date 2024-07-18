@@ -35,6 +35,7 @@ function Home() {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
+        <CategoryList categories={categories} />
         <div className="flex flex-col md:flex-row">
           <div className="md:w-3/4 md:pr-8">
             <div className="container mx-auto px-4 py-8">
@@ -79,6 +80,60 @@ function Home() {
         </div>
       </div>
     </>
+  );
+}
+
+function CategoryList({ categories }) {
+  const colors = [
+    "bg-red-500",
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-yellow-500",
+    "bg-purple-500",
+    "bg-pink-500",
+    "bg-indigo-500",
+    "bg-teal-500",
+  ];
+
+  return (
+    <div className="mb-8">
+      <h2 className="text-2xl font-bold mb-4">Categories</h2>
+      <div className="flex flex-wrap">
+        {categories.map((category, index) => (
+          <div key={category.id} className="relative group mr-4 mb-4">
+            <Link
+              to={`/category/${category.id}`}
+              className={`${
+                colors[index % colors.length]
+              } text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity`}
+            >
+              {category.name}
+            </Link>
+            {category.subcategories && category.subcategories.length > 0 && (
+              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div
+                  className="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="options-menu"
+                >
+                  {category.subcategories.map((subcat) => (
+                    <Link
+                      key={subcat.id}
+                      to={`/subcategory/${subcat.id}`}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      role="menuitem"
+                    >
+                      {subcat.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
