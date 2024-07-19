@@ -13,18 +13,51 @@ function Login() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+ /* const clearStorageAndCookies = () => {
+    localStorage.clear();
+    document.cookie.split(";").forEach((c) => {
+      document.cookie =
+        c.trim().startsWith("token=") || c.trim().startsWith("isAdmin=")
+          ? `${c.trim()}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`
+          : c;
+    });
+  };
+*/
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Clear local storage and cookies
+    //clearStorageAndCookies();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/login",
-        credentials
-      );
+      console.log("Sending request with credentials:", credentials);
+      const response = await axios.post("/api/users/login", credentials, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Request Headers:", response.config.headers);
+
       localStorage.setItem("token", response.data.token);
-      navigate("/admin");
+      localStorage.setItem("isAdmin", response.data.isAdmin);
+      // Redirect to appropriate page based on admin status
+      if (response.data.isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
+      if (error.response) {
+        console.error("Response error data:", error.response.data);
+        console.error("Response error status:", error.response.status);
+        console.error("Response error headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Request error:", error.request);
+      } else {
+        console.error("Error message:", error.message);
+      }
       alert("Login failed. Please check your credentials.");
-      console.error("Login error:", error);
     }
   };
 

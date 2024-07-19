@@ -10,7 +10,10 @@ import PrivateRoute from "./components/PrivateRoute";
 import Footer2 from "./components/footer/Footer";
 //import Header from "./components/header/Header";
 
+
+
 function App() {
+  
   return (
     <Router>
       <div className="flex flex-col min-h-screen">

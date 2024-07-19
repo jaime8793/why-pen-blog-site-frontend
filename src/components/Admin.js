@@ -27,8 +27,10 @@ function Admin() {
     try {
       const response = await axios.get("http://localhost:5000/api/posts", {
         headers: { Authorization: `Bearer ${token}` },
+        
       });
       setPosts(response.data);
+      console.log("Token received:", response.data.token);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
