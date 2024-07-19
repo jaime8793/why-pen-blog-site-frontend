@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Admin() {
   const [posts, setPosts] = useState([]);
@@ -15,19 +16,108 @@ function Admin() {
   const [newCategory, setNewCategory] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [categoryMap, setCategoryMap] = useState({});
- 
+
+  const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
   useEffect(() => {
     if (token) {
       fetchPosts();
       fetchCategories();
+      fetchUsers(currentPage);
+    } else {
+      navigate("/login");
     }
-  }, [token]);
+  }, [token, currentPage, navigate]);
+
+  const fetchUsers = async (page) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/users?page=${page}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setUsers(response.data.users);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setError("Failed to fetch users. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMakeAdmin = async (userId) => {
+    if (window.confirm("Are you sure you want to make this user an admin?")) {
+      try {
+        await axios.put(
+          `http://localhost:5000/api/users/make-admin/${userId}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        fetchUsers(currentPage);
+      } catch (error) {
+        console.error("Error making user admin:", error);
+        alert("Failed to make user an admin. Please try again.");
+      }
+    }
+  };
+
+  const handleDeleteUser = async (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        fetchUsers(currentPage);
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        alert("Failed to delete user. Please try again.");
+      }
+    }
+  };
+
+  const handleDeleteCategory = async (categoryId) => {
+    if (window.confirm("Are you sure you want to delete this category?")) {
+      try {
+        await axios.delete(
+          `http://localhost:5000/api/categories/${categoryId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        fetchCategories();
+      } catch (error) {
+        console.error("Error deleting category:", error);
+        alert("Failed to delete category. Please try again.");
+      }
+    }
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
 
   const fetchPosts = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/posts", {
         headers: { Authorization: `Bearer ${token}` },
-        
       });
       setPosts(response.data);
       console.log("Token received:", response.data.token);
@@ -201,6 +291,60 @@ function Admin() {
           Add Category
         </button>
       </form>
+      <h3 className="text-xl font-bold mb-2">Manage Users:</h3>
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto">
+          <thead>
+            <tr>
+              <th className="px-4 py-2">Username</th>
+              <th className="px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td className="border px-4 py-2">{user.username}</td>
+                <td className="border px-4 py-2">
+                  {!user.isAdmin && (
+                    <button
+                      onClick={() => handleMakeAdmin(user._id)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
+                    >
+                      Make Admin
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleDeleteUser(user._id)}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Pagination controls */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
 
       <h3 className="text-xl font-bold mb-2">Your Posts:</h3>
       {posts.map((post) => (
