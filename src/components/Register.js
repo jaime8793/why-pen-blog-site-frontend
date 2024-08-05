@@ -5,6 +5,7 @@ import axios from "axios";
 function Register() {
   const [credentials, setCredentials] = useState({
     username: "",
+    email: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -35,6 +36,14 @@ function Register() {
           value={credentials.username}
           onChange={handleInputChange}
           placeholder="Username"
+          className="w-full p-2 mb-4 border rounded"
+        />
+        <input
+          type="email"
+          name="email"
+          value={credentials.email}
+          onChange={handleInputChange}
+          placeholder="Email"
           className="w-full p-2 mb-4 border rounded"
         />
         <input

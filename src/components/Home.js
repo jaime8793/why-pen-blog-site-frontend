@@ -74,7 +74,7 @@ function Home() {
               currentPage={currentPage}
             />
           </div>
-          <div className="md:w-1/4">
+          <div className="md:w-1/4 sticky">
             <Sidebar />
           </div>
         </div>
